@@ -8,19 +8,11 @@
 #include "G4SystemOfUnits.hh"
 #include "G4OpticalPhysics.hh"
 
-namespace NikhefProject {
-
+// For starters, here's a cube of Geant4 air
 G4VPhysicalVolume* DetConstruction::Construct() {
-    // Add a background material
-    G4Box *solidWorld = new G4Box("solidWorld", 0.5 * m, 0.5 * m, 0.5 * m);
+    G4Box *solidWorld = new G4Box("solidWorld", 1.0 * m, 1.0 * m, 1.0 * m);
     G4Material *air = G4NistManager::Instance()->FindOrBuildMaterial("G4_AIR");
-
     G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, air, "logicWorld");
-
-    G4VPhysicalVolume *physWorld = new G4PVPlacement(nullptr, G4ThreeVector(), logicWorld,
-        "physWorld", nullptr, false, 0);
-
+    G4VPhysicalVolume *physWorld = new G4PVPlacement(nullptr, G4ThreeVector(), logicWorld, "physWorld", nullptr, false, 0);
     return physWorld;
-}
-
 }
