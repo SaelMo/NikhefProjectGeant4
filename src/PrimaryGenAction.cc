@@ -19,19 +19,4 @@ PrimaryGenAction::PrimaryGenAction(){
   fParticleGun->SetParticlePosition(particlePosition);
 }
 
-void PrimaryGenAction::GeneratePrimaries(G4Event* anEvent){
-  G4double theta = CLHEP::pi * G4UniformRand(); // Random angle theta
-  G4double phi = 2 * CLHEP::pi * G4UniformRand(); // Random angle phi
-
-  G4ThreeVector randomDirection(std::sin(theta) * std::cos(phi),
-                                std::sin(theta) * std::sin(phi),
-                                std::cos(theta));
-
-  auto angDist = fParticleGun->GetCurrentSource()->GetAngDist();
-  angDist->SetParticleMomentumDirection(randomDirection);
-
-  G4cout << "PRIMARY SHOT: Direction: " << randomDirection << G4endl;
-  fParticleGun->GeneratePrimaryVertex(anEvent);
-}
-
 }
