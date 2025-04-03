@@ -8,7 +8,6 @@
 namespace NikhefProject {
 
 void SteppingAction::UserSteppingAction(const G4Step *aStep) {
-    static bool headerPrinted = false;
     G4double kineticEnergy = aStep->GetPreStepPoint()->GetKineticEnergy();
     G4cout << kineticEnergy / keV << G4endl;
 }
